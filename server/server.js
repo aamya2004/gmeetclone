@@ -19,7 +19,19 @@ io.on("connection", (socket) => {
     });
   });
 
+
   socket.on("callAccepted", (data) => {
     io.to(data.to).emit("callAcceptedTrue", data.signal);
   });
+
+  socket.on("startScreenSharing", ({ stream }) => {
+    // Broadcast to all connected clients that screen sharing has started
+    socket.broadcast.emit("userStartedScreenSharing", { stream });
+  });
+
+  socket.on("send", (data) => {
+    // Broadcasting messages to all connected sockets except the sender
+    io.emit("receive", { message: data.message, name: data.name });
+  });
 });
+

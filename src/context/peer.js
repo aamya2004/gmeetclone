@@ -1,7 +1,4 @@
-import React, {
-  useState,
-  useRef,
-} from "react";
+import React, { useState, useRef } from "react";
 const PeerContext = React.createContext(null);
 export const usePeer = () => React.useContext(PeerContext);
 
@@ -18,8 +15,13 @@ export const PeerProvider = (props) => {
   const [name, setName] = useState("");
   const myVideo = useRef({});
   const userVideo = useRef({});
+  const screenShareRef = useRef({});
   const connectionRef = useRef();
-  const [user,setUser] = useState({name:null,picture:null})
+  const [user, setUser] = useState({ name: null, picture: null });
+  const [mediaStreamLoaded, setMediaStreamLoaded] = useState(false);
+  const [userMediaStreamLoaded, setUserMetMediaStreamLoaded] = useState(false);
+  const [screenSharingVideos, setScreenSharingVideos] = useState([]);
+  const [screenStream, setScreenStream] = useState(null);
 
   return (
     <PeerContext.Provider
@@ -28,6 +30,10 @@ export const PeerProvider = (props) => {
         // socket,
         setMe,
         stream,
+        mediaStreamLoaded,
+        setMediaStreamLoaded,
+        userMediaStreamLoaded,
+        setUserMetMediaStreamLoaded,
         setStream,
         receivingCall,
         setReceivingCall,
@@ -50,6 +56,11 @@ export const PeerProvider = (props) => {
         connectionRef,
         user,
         setUser,
+        screenSharingVideos,
+        setScreenSharingVideos,
+        screenStream,
+        setScreenStream,
+        screenShareRef,
       }}
     >
       {props.children}

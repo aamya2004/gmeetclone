@@ -19,7 +19,7 @@ const Dates = () => {
   };
 
   return (
-      <p className='text-gray-500  text-xl'>{currentDate.toLocaleDateString(undefined, options)}</p>
+      <p className='text-gray-500  text-md text-center lg:text-lg xl:text-xl xl:text-end'>{currentDate.toLocaleDateString(undefined, options)}</p>
   );
 };
 

@@ -17,7 +17,7 @@ const Time = () => {
 
   return (
     //<div className='text-gray-400 font-medium text-2xl'>
-      <h2 className='text-gray-500  text-xl'>{formattedTime}</h2>
+      <h2 className='text-gray-500  text-md text-center lg:text-lg xl:text-xl xl:text-end'>{formattedTime}</h2>
     //</div>
   );
 };

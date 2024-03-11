@@ -20,8 +20,10 @@ const Authetication = () => {
     {
       user.name ?
       <>
-        <h3>{user.name}</h3>
-        <img src={user.picture} />
+      <div className='gap-2 flex items-center'>      
+        <img src={user.picture} className='rounded-3xl h-8' />
+        <h2 className='text-zinc-500 font-medium'>{user.name}</h2>
+      </div>
       </>
       :
       <>
