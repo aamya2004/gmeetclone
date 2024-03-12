@@ -5,9 +5,9 @@ import Peer from "simple-peer";
 import { useNavigate } from "react-router-dom";
 import { io } from "socket.io-client";
 import { usePeer } from "../context/peer";
-const socket = io("http://localhost:9000");
-
-
+// https://gmeetclone-socket-server.onrender.com - Production
+// http://localhost:9000 - Development
+const socket = io("https://gmeetclone-socket-server.onrender.com");
 const MobileJoinRoom = () => {
   const [me, setMe] = useState("");
   const [stream, setStream] = useState();

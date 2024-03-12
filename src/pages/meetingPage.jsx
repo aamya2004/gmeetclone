@@ -16,6 +16,8 @@ import { MdOutlineMessage } from "react-icons/md";
 import { RiShapesLine } from "react-icons/ri";
 import { LiaUserLockSolid } from "react-icons/lia";
 import Time from "../components/time";
+// https://gmeetclone-socket-server.onrender.com - Production
+// http://localhost:9000 - Development
 function MeetingPage() {
   const [me, setMe] = useState("");
   const [stream, setStream] = useState(null);
@@ -36,7 +38,7 @@ function MeetingPage() {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
 
-  const socket = io("http://localhost:9000");
+  const socket = io("https://gmeetclone-socket-server.onrender.com");
   const {
     callEnded,
     setCallEnded,

@@ -28,8 +28,9 @@ function MobileMeetingPage() {
   const [peer, setPeer] = useState(null);
   const connectionRef = useRef();
   const screenShareRef = useRef();
-
-  const socket = io("http://localhost:9000");
+  // https://gmeetclone-socket-server.onrender.com - Production
+  // http://localhost:9000 - Development
+  const socket = io("https://gmeetclone-socket-server.onrender.com");
   const {
     callEnded,
     setCallEnded,

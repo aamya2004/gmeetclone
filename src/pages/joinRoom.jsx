@@ -8,6 +8,8 @@ import { usePeer } from "../context/peer";
 import loading from "../assets/loading.gif"
 import { IoMdMic, IoMdMicOff, IoMdVideocam } from "react-icons/io";
 import { BiVideo, BiVideoOff } from "react-icons/bi";
+// https://gmeetclone-socket-server.onrender.com - Production
+// http://localhost:9000 - Development
 const JoinRoom = () => {
   const [me, setMe] = useState("");
   const [stream, setStream] = useState();
@@ -22,7 +24,7 @@ const JoinRoom = () => {
   const socket = useRef(null);
 
   useEffect(() => {
-    socket.current = io("http://localhost:9000");
+    socket.current = io("https://gmeetclone-socket-server.onrender.com");
 
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: true })
