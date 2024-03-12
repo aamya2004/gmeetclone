@@ -89,16 +89,21 @@ function MeetingPage() {
     });
 
     socket.on("receive", ({ message, name }) => {
+      const isDuplicate = messages.some(
+        (msg) => msg.message === message && msg.name === name
+      );
 
-      const isDuplicate = messages.some((msg) => msg.message === message && msg.name === name);
-
-      if(!isDuplicate){
+      if (!isDuplicate) {
         setMessages((prevMessages) => {
           // Create a new array with the new message appended
           const updatedMessages = [...prevMessages, { message, name }];
           // Filter out any duplicate messages based on both message content and sender name
-          const uniqueMessages = updatedMessages.filter((msg, index, self) =>
-            index === self.findIndex((m) => m.message === msg.message && m.name === msg.name)
+          const uniqueMessages = updatedMessages.filter(
+            (msg, index, self) =>
+              index ===
+              self.findIndex(
+                (m) => m.message === msg.message && m.name === msg.name
+              )
           );
           return uniqueMessages;
         });
@@ -218,7 +223,7 @@ function MeetingPage() {
 
   const sendMessage = () => {
     if (newMessage.trim() !== "") {
-      socket.emit("send",{message: newMessage, name: user.name});
+      socket.emit("send", { message: newMessage, name: user.name });
       setNewMessage("");
     }
   };
@@ -247,8 +252,10 @@ function MeetingPage() {
         ) : null}
 
         {userVideo && myVideo ? (
-          <div className="video flex justify-evenly bg-zinc-900 p-10 
-          w-screen gap-4 h-screen md:mt-0 ">
+          <div
+            className="video flex justify-evenly bg-zinc-900 p-10 
+          w-screen gap-4 h-screen md:mt-0 "
+          >
             <div
               id="screen-share-container"
               className={clsx({
@@ -269,23 +276,23 @@ function MeetingPage() {
                 "flex-col  3xl:mt-24 items-center 3xl:w-2/6 lg:mt-14  ":
                   screenSharing === true,
                 "flex-row": screenSharing === false,
-                "3xl:w-screen md:w-full  justify-center": callAccepted === false,
+                "3xl:w-screen md:w-full  justify-center":
+                  callAccepted === false,
                 "3xl:w-8/12 justify-center md:w-full ": callAccepted === true,
               })}
             >
-              <div className={clsx("relative ",
-                    {
-                      "md:w-full md:h-5/6 flex md:justify-center": callAccepted === false,
-
-                    }
-                  )}>
+              <div
+                className={clsx("relative ", {
+                  "md:w-full md:h-5/6 flex md:justify-center":
+                    callAccepted === false,
+                })}
+              >
                 <video
                   className={clsx(
                     "border-zinc-500 border-2 h-5/6  rounded-xl ",
                     {
                       "h-3/5": screenSharing === true,
                       "md:w-max-fit md:h-full ": callAccepted === false,
-                      
                     }
                   )}
                   playsInline
@@ -294,14 +301,10 @@ function MeetingPage() {
                 />
                 <img
                   src={user.picture}
-                  className={clsx(
-                    "absolute  w-40 h-40  rounded-full",
-                    {
-                      hidden: isVideoMuted === false,
-                      "top-1/3"
-                      : callAccepted === false,
-                    }
-                  )}
+                  className={clsx("absolute  w-40 h-40  rounded-full", {
+                    hidden: isVideoMuted === false,
+                    "top-1/3": callAccepted === false,
+                  })}
                   alt="User Image"
                 />
                 <div className="absolute bottom-0 h-max-fit left-10 lg:left-40 xl:left-96 flex items-center justify-start p-6 md:">
@@ -393,8 +396,10 @@ function MeetingPage() {
             </div>
           </div>
         )}
-        <div className="w-screen  flex items-center  
-          justify-around gap-x-96  fixed bottom-0 bg-zinc-900  md:h-20 md:z-0  md:flex md:gap-x-0 xl:gap-x-80">
+        <div
+          className="w-screen  flex items-center  
+          justify-around gap-x-96  fixed bottom-0 bg-zinc-900  md:h-20 md:z-0  md:flex md:gap-x-0 xl:gap-x-80"
+        >
           <div className="">
             <Time />
           </div>
