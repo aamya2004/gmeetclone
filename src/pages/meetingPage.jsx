@@ -256,7 +256,7 @@ function MeetingPage() {
         {userVideo && myVideo ? (
           <div
             className="video flex justify-evenly bg-zinc-900 p-10 
-          w-screen gap-4 h-screen md:mt-0 "
+          w-screen gap-4 h-screen md:mt-0"
           >
             <div
               id="screen-share-container"
@@ -274,24 +274,24 @@ function MeetingPage() {
             </div>
 
             <div
-              className={clsx("flex gap-6  md:gap-3", {
-                "flex-col  3xl:mt-24 items-center 3xl:w-2/6 lg:mt-14  ":
+              className={clsx("flex  md:gap-8", {
+                "flex-col  3xl:mt-24 items-center 3xl:w-2/6 ":
                   screenSharing === true,
-                "flex-row": screenSharing === false,
+                "lg:flex-row md:flex-col": screenSharing === false,
                 "3xl:w-screen md:w-full  justify-center":
                   callAccepted === false,
-                "3xl:w-8/12 justify-center md:w-full ": callAccepted === true,
+                "3xl:w-8/12 justify-center p-8": callAccepted === true,
               })}
             >
               <div
-                className={clsx("relative ", {
+                className={clsx("relative h-1/2", {
                   "md:w-full md:h-5/6 flex md:justify-center":
                     callAccepted === false,
                 })}
               >
                 <video
                   className={clsx(
-                    "border-zinc-500 border-2 h-5/6  rounded-xl ",
+                    "border-zinc-500 border-2 h-full  rounded-xl ",
                     {
                       "h-3/5": screenSharing === true,
                       "md:w-max-fit md:h-full ": callAccepted === false,
@@ -315,10 +315,10 @@ function MeetingPage() {
               </div>
 
               {callAccepted && !callEnded && (
-                <div>
+                <div className="h-1/2">
                   <video
                     className={clsx(
-                      "border-zinc-500 border-2 bg-black rounded-xl md:h-5/6",
+                      "border-zinc-500 border-2 bg-black rounded-xl md:h-full",
                       {
                         "h-3/5": screenSharing === true,
                       }
@@ -334,7 +334,7 @@ function MeetingPage() {
             <div
               className={clsx("MessagesDiv", {
                 hidden: isMessaging === false,
-                "w-1/5 h-full  bg-white rounded-lg p-3 ": isMessaging === true,
+                "w-1/5 md:w-1/2 h-full  bg-white rounded-lg p-3 ": isMessaging === true,
               })}
             >
               <div className="h-5/6  overflow-auto">
@@ -344,13 +344,13 @@ function MeetingPage() {
                   </div>
                 ))}
               </div>
-              <div className=" h-20 flex   gap-3 items-center ">
+              <div className=" h-20 flex   gap-4  items-center  ">
                 <input
                   type="text"
                   placeholder="Send a message"
                   value={newMessage}
                   onChange={(e) => setNewMessage(e.target.value)}
-                  className="rounded-2xl h-10 bg-zinc-100 p-3"
+                  className="rounded-2xl h-10 md:w-11/12 bg-zinc-100 p-3"
                 />
                 <button className="text-zinc-600" onClick={sendMessage}>
                   Send
@@ -400,7 +400,7 @@ function MeetingPage() {
         )}
         <div
           className="w-screen  flex items-center  
-          justify-around gap-x-96  fixed bottom-0 bg-zinc-900  md:h-20 md:z-0  md:flex md:gap-x-0 xl:gap-x-80"
+          justify-around gap-x-96  fixed bottom-0 bg-zinc-900  md:h-10   md:flex md:gap-x-0 xl:gap-x-80"
         >
           <div className="">
             <Time />
